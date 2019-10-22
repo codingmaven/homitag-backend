@@ -5,7 +5,7 @@ info:
   title: Homitag API
   contact:
     email: taowang115@gmail.com
-basePath: /v1
+basePath: /api
 externalDocs:
   description: Github Project
 tags:
