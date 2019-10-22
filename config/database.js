@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-const Mockgoose = require('mockgoose').Mockgoose;
 
 async function connectWithRetry () {
   try {
@@ -16,6 +15,7 @@ async function connectWithRetry () {
 }
 
 if(process.env.NODE_ENV === 'test') {
+  const Mockgoose = require('mockgoose').Mockgoose;
   const mockgoose = new Mockgoose(mongoose);
   mockgoose.prepareStorage()
     .then(() => {
