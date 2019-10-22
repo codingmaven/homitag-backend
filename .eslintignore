@@ -1,0 +1,5 @@
+# Ignore tests
+test/*
+manualTest/*
+public/*
+coverage/*

@@ -1,0 +1,17 @@
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# intellij
+.idea
+
+
+# dotenv file
+.env
+
+# coverage
+coverage/
+
+.nyc_output

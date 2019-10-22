@@ -1,0 +1,69 @@
+{
+  "name": "homitag-backend",
+  "version": "0.0.1",
+  "engines": {
+    "node": "10.13.0"
+  },
+  "homepage": "https://github.com/codingmaven/homitag-backend",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/codingmaven/homitag-backend.git"
+  },
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "./node_modules/.bin/eslint .",
+    "test": "NODE_ENV=test nyc ./node_modules/.bin/mocha --timeout 20000 --recursive ./test --exit",
+    "precommit": "npm run lint"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "eslint-plugin-ava": "^4.5.1",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-unicorn": "^2.1.2",
+    "husky": "^0.14.3",
+    "mocha": "^4.0.1",
+    "mockgoose": "^7.3.5",
+    "nodemon": "^1.17.2",
+    "nyc": "^11.7.1",
+    "supertest": "^3.0.0",
+    "supertest-as-promised": "^4.0.2",
+    "surge": "^0.19.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.4",
+    "debug": "^3.0.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.3",
+    "express-promise-router": "^2.0.0",
+    "joi": "^11.1.1",
+    "lodash": "^4.17.10",
+    "mongoose": "^4.13.12",
+    "mongoose-paginate": "^5.0.3"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 0,
+    "statements": 0,
+    "functions": 0,
+    "branches": 0,
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "exclude": [
+      "public",
+      "test",
+      "coverage",
+      "index.js"
+    ],
+    "cache": true,
+    "all": true,
+    "report-dir": "./coverage"
+  }
+}

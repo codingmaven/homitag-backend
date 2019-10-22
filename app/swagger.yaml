@@ -1,0 +1,284 @@
+swagger: '2.0'
+info:
+  description: Homitag API
+  version: 0.1.1
+  title: Homitag API
+  contact:
+    email: taowang115@gmail.com
+basePath: /v1
+externalDocs:
+  description: Github Project
+tags:
+  - name: genres
+    description: Genres
+  - name: movies
+    description: Movies
+schemes:
+  - http
+paths:
+  /genres:
+    get:
+      tags:
+        - genres
+      summary: Find genres
+      description: Return all genres
+      produces:
+        - application/json
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/genre'
+    post:
+      tags:
+        - genres
+      summary: Add genres
+      description: Create a new genre
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: genre
+        description: New genre
+        required: true
+        schema:
+          $ref: '#/definitions/genre'
+      responses:
+        201:
+          description: Genre created
+          schema:
+            $ref: '#/definitions/genre'
+        400:
+          description: Validation exception
+  /genres/{genre_id}:
+    get:
+      tags:
+        - genres
+      summary: Find genre
+      description: Return a single genre
+      produces:
+        - application/json
+      parameters:
+        - name: genre_id
+          in: path
+          description: Id of genre to be found
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/genre'
+        404:
+          description: Genre not found
+    put:
+      tags:
+        - genres
+      summary: Update genre
+      description: Replace a single existing genre
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: genre_id
+          in: path
+          description: Id of genre to be replaced
+          required: true
+          type: string
+        - in: body
+          name: genre
+          description: Updated genre
+          required: true
+          schema:
+            $ref: '#/definitions/genre'
+      responses:
+        200:
+          description: Genre updated
+          schema:
+            $ref: '#/definitions/genre'
+        400:
+          description: Validation exception
+        404:
+          description: Genre not found
+    delete:
+      tags:
+        - genres
+      summary: Delete genre
+      description: Delete a single genre
+      produces:
+        - application/json
+      parameters:
+        - name: genre_id
+          in: path
+          description: Id of genre to be deleted
+          required: true
+          type: string
+      responses:
+        204:
+          description: Genre deleted
+        404:
+          description: Genre not found
+  /movies:
+    get:
+      tags:
+        - movies
+      summary: Find movies
+      description: Return all movies
+      produces:
+        - application/json
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/movie'
+    post:
+      tags:
+        - movies
+      summary: Add movies
+      description: Create a new movie
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: movie
+          description: New movie
+          required: true
+          schema:
+            $ref: '#/definitions/movie'
+      responses:
+        201:
+          description: Movie created
+          schema:
+            $ref: '#/definitions/movie'
+        400:
+          description: Validation exception
+  /movies/{movie_id}:
+    get:
+      tags:
+        - movies
+      summary: Find movie
+      description: Return a single movie
+      produces:
+        - application/json
+      parameters:
+        - name: movie_id
+          in: path
+          description: Id of movie to be found
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/movie'
+        404:
+          description: Movie not found
+    put:
+      tags:
+        - movies
+      summary: Update movie
+      description: Replace a single existing movie
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: movie_id
+          in: path
+          description: Id of movie to be replaced
+          required: true
+          type: string
+        - in: body
+          name: movie
+          description: Updated movie
+          required: true
+          schema:
+            $ref: '#/definitions/movie'
+      responses:
+        200:
+          description: Movie updated
+          schema:
+            $ref: '#/definitions/genre'
+        400:
+          description: Validation exception
+        404:
+          description: Genre not found
+    delete:
+      tags:
+        - movies
+      summary: Delete movie
+      description: Delete a single movie
+      produces:
+        - application/json
+      parameters:
+        - name: movie_id
+          in: path
+          description: Id of movie to be deleted
+          required: true
+          type: string
+      responses:
+        204:
+          description: Movie deleted
+        404:
+          description: Movie not found
+definitions:
+  genre:
+    type: object
+    properties:
+      _id:
+        type: string
+        readOnly: true
+        example: "8303b2870e68e901d8a90ee9"
+      name:
+        type: string
+        example: "rock"
+      description:
+        type: string
+        example: "description"
+      created:
+        type: string
+        format: date-time
+        readOnly: true
+      updated:
+        type: string
+        format: date-time
+        readOnly: true
+  movie:
+    type: object
+    properties:
+      _id:
+        type: string
+        readOnly: true
+        example: "8303b2870e68e901d8a90ee9"
+      name:
+        type: string
+        example: "rock"
+      releaseDate:
+        type: date-time
+        example: "description"
+      duration:
+        type: number
+        example: 120
+      rating:
+        type: number
+        example: 5
+      genre:
+        type: string
+        example: "8303b2870e68e901d8a90ee9"
+      created:
+        type: string
+        format: date-time
+        readOnly: true
+      updated:
+        type: string
+        format: date-time
+        readOnly: true

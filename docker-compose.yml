@@ -1,0 +1,23 @@
+version: "3.1"
+services:
+  api:
+    build: ./
+    image: homitag-backend:dev
+    container_name: homitag-backend
+    depends_on:
+      - mongo
+    environment:
+      NODE_ENV: production
+      MONGO_URI: mongodb://mongo:27017/homitag
+      DEFAULT_PAGE_SIZE: 30
+      PORT: 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app/
+      - /app/node_modules
+  mongo:
+    image: mongo:3.4.10
+    container_name: homitag-api-mongo
+    ports:
+      - 27017:27017
